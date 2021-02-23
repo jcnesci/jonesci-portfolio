@@ -62,6 +62,15 @@ const colors = {
   joOrange: "#ff9e80",
   joOrangeLight: "#ffd0b0",
   joOrangeDark: "#c96f53",
+  joPurple: "#b388ff",
+  joPurpleLight: "#e7b9ff",
+  joPurpleDark: "#805acb",
+  joPink: "#ff80ab",
+  joPinkLight: "#ffb2dd",
+  joPinkDark: "#c94f7c",
+  joIndigo: "#8c9eff",
+  joIndigoLight: "#c0cfff",
+  joIndigoDark: "#5870cb",
 }
 
 export default colors
