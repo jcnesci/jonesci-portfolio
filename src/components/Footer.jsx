@@ -15,35 +15,15 @@ const FooterContainer = styled("div")`
   svg {
     max-width: 50px;
   }
-`
 
-const FooterAuthor = styled("a")`
-  font-size: 0.75em;
-  color: ${colors.grey700};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  margin-top: 1.5em;
-
-  &:hover {
-    color: ${colors.blue900};
-
-    .FooterSpooch {
-      animation-name: rotate;
-      animation-duration: 1.5s;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear;
-    }
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  #copyright {
+    font-size: 0.75em;
+    color: ${colors.grey700};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    margin-top: 1.5em;
   }
 `
 
@@ -57,10 +37,7 @@ const Footer = () => (
     <Link to="/">
       <Logo />
     </Link>
-    <FooterAuthor href="https://www.marguerite.io/?utm_source=prist&utm_medium=footer&utm_campaign=prist_starter">
-      © 2021 — Copyright Jonathan C. Nesci
-      <FooterSpooch className="FooterSpooch" src={spooch} />
-    </FooterAuthor>
+    <div id="copyright">© 2021 — Copyright Jonathan C. Nesci</div>
   </FooterContainer>
 )
 
