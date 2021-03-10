@@ -16,9 +16,6 @@ const AboutContainer = styled("div")`
   }
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
-    // grid-template-columns: 7em 1fr;
-    // grid-template-rows: 3em 1fr;
-    // grid-gap: 2em;
     display: block;
   }
 `
@@ -30,7 +27,6 @@ const AboutLinkContainer = styled("div")`
   flex-direction: column;
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
-    // grid-row: 2;
     padding-bottom: 1em;
     flex-direction: row;
     flex-wrap: wrap;
