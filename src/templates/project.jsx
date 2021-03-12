@@ -102,6 +102,14 @@ const ProjectBody = styled("div")`
       width: 100%;
     }
   }
+
+  // For embedded media in body text, like Youtube, etc.
+  iframe {
+    width: 550px;
+    height: 310px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
 `
 
 const WorkLink = styled(Link)`
@@ -114,7 +122,7 @@ const Project = ({ project, meta }) => {
   return (
     <>
       <Helmet
-        title={`${project.project_title[0].text} | Prist, Gatsby & Prismic Starter`}
+        title={`${project.project_title[0].text}`}
         titleTemplate={`%s | ${meta.title}`}
         meta={[
           {
@@ -123,7 +131,7 @@ const Project = ({ project, meta }) => {
           },
           {
             property: `og:title`,
-            content: `${project.project_title[0].text} | Prist, Gatsby & Prismic Starter`,
+            content: `${project.project_title[0].text}`,
           },
           {
             property: `og:description`,
@@ -155,26 +163,28 @@ const Project = ({ project, meta }) => {
         <ProjectTitle>{RichText.render(project.project_title)}</ProjectTitle>
         {project.project_hero_image && (
           <ProjectHeroContainer>
-            <img src={project.project_hero_image.url} alt="bees" />
+            <img src={project.project_hero_image.url} alt="hero" />
           </ProjectHeroContainer>
         )}
         <ProjectBody>
-          <ProjectLinkContainer>
-            <ProjectLink
-              href="https://www.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Project Link
-              <span>&#8594;</span>
-            </ProjectLink>
-          </ProjectLinkContainer>
+          {project.project_link.url && (
+            <ProjectLinkContainer>
+              <ProjectLink
+                href={project.project_link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Project Link
+                <span>&#8594;</span>
+              </ProjectLink>
+            </ProjectLinkContainer>
+          )}
           {RichText.render(project.project_description)}
           <ProjectAboutContainer>
             <div>Company</div>
-            <div>Takram</div>
+            <div>{RichText.asText(project.project_company)}</div>
             <div>Roles</div>
-            <div>Design research, etc.</div>
+            <div>{RichText.asText(project.project_roles)}</div>
           </ProjectAboutContainer>
           <WorkLink to={"/work"}>
             <Button className="Button--secondary">See other work</Button>
@@ -208,6 +218,14 @@ export const query = graphql`
             project_post_date
             project_hero_image
             project_description
+            project_link {
+              ... on PRISMIC__ExternalLink {
+                _linkType
+                url
+              }
+            }
+            project_company
+            project_roles
             _meta {
               uid
             }
