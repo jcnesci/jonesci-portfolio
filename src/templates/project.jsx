@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import styled from "@emotion/styled"
 import colors from "styles/colors"
+import dimensions from "styles/dimensions"
 import { Link, graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import Button from "components/_ui/Button"
@@ -27,6 +28,66 @@ const ProjectTitle = styled("div")`
   max-width: 550px;
   margin: 0 auto;
   text-align: center;
+`
+
+const ProjectLinkContainer = styled("div")`
+  padding-bottom: 1em;
+`
+
+const ProjectLink = styled("a")`
+  font-weight: 600;
+  text-decoration: none;
+  color: currentColor;
+  transition: all 150ms ease-in-out;
+
+  span {
+    margin-left: 1em;
+    transform: translateX(-8px);
+    display: inline-block;
+    transition: transform 400ms ease-in-out;
+  }
+
+  //NB: hack to reset styles after linked opened in new tab
+  &:focus,
+  &:focus:hover {
+    color: currentColor;
+
+    span {
+      transform: translateX(-8px);
+    }
+  }
+
+  &:hover {
+    color: ${colors.joTeal};
+    transition: all 150ms ease-in-out;
+
+    span {
+      transform: translateX(0px);
+      opacity: 1;
+      transition: transform 150ms ease-in-out;
+    }
+  }
+`
+
+const ProjectAboutContainer = styled("div")`
+  padding-top: 1em;
+  padding-bottom: 3em;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 1.5em;
+
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding-bottom: 1em;
+  }
+
+  > div:nth-of-type(1),
+  > div:nth-of-type(2) {
+    padding-top: 2em;
+    border-top: 1px solid rgb(230, 230, 230);
+  }
+  > div:nth-of-type(odd) {
+    font-weight: 600;
+  }
 `
 
 const ProjectBody = styled("div")`
@@ -98,7 +159,23 @@ const Project = ({ project, meta }) => {
           </ProjectHeroContainer>
         )}
         <ProjectBody>
+          <ProjectLinkContainer>
+            <ProjectLink
+              href="https://www.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Project Link
+              <span>&#8594;</span>
+            </ProjectLink>
+          </ProjectLinkContainer>
           {RichText.render(project.project_description)}
+          <ProjectAboutContainer>
+            <div>Company</div>
+            <div>Takram</div>
+            <div>Roles</div>
+            <div>Design research, etc.</div>
+          </ProjectAboutContainer>
           <WorkLink to={"/work"}>
             <Button className="Button--secondary">See other work</Button>
           </WorkLink>
