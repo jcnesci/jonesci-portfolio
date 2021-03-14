@@ -232,7 +232,7 @@ export const query = graphql`
           }
         }
       }
-      allProjects {
+      allProjects(tags: "featured", sortBy: project_post_date_DESC) {
         edges {
           node {
             project_title
