@@ -17,6 +17,13 @@ To get it to run, had to do:
   - `gatsby develop`
   - Should work.
 
+After modifying the data schema in Prismic, clean Gatsby and re-run:
+
+- `gatsby clean`
+- if necessary
+  - `rm -rf node_modules .cache package-lock.json`
+  - `npm install`
+
 ## WIP:
 
 - new colors: https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=00BFA5&secondary.color=FF9E80

@@ -26,7 +26,7 @@ module.exports = {
     {
       resolve: "@prismicio/gatsby-source-prismic-graphql",
       options: {
-        repositoryName: "jcnesci-portfolio", //"prist", // (REQUIRED, replace with your own)
+        repositoryName: "jcnesci-portfolio",
         linkResolver: () => post => `/${post.uid}`,
       },
     },
